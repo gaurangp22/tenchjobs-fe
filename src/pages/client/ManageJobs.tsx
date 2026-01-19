@@ -43,12 +43,10 @@ export function ManageJobs() {
         setReleasingJobId(jobId)
         try {
             const escrowService = new EscrowService()
-            const recipient = new PublicKey("7Xw76w...mock...recipient") // Mock recipient
-            const escrowAccount = new PublicKey("Escrow...Account...Key") // Mock escrow account
 
             const signature = await escrowService.releasePayment(
                 { publicKey, signTransaction, sendTransaction },
-                escrowAccount, // dummy
+                new PublicKey("Escrow...Account...Key"), // dummy escrow account
                 publicKey, // payment back to self for demo, or to freelancer
                 amount / 2 // release 50% for now
             )
